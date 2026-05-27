@@ -1,0 +1,477 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+type Answer = {
+  label: string;
+  points: number;
+};
+
+type Question = {
+  id: string;
+  text: string;
+  hint?: string;
+  answers: Answer[];
+};
+
+type Screen = {
+  title: string;
+  icon: string;
+  questions: Question[];
+};
+
+const screens: Screen[] = [
+  {
+    title: "Долги",
+    icon: "💳",
+    questions: [
+      {
+        id: "debt_amount",
+        text: "Сколько вы должны?",
+        hint: "Кредиты, займы, ипотека, налоги, штрафы, ЖКХ — всё вместе",
+        answers: [
+          { label: "До 500 000 ₽", points: 1 },
+          { label: "500 000 – 1 000 000 ₽", points: 2 },
+          { label: "Более 1 000 000 ₽", points: 3 },
+        ],
+      },
+      {
+        id: "overdue",
+        text: "Есть ли просрочки по платежам?",
+        hint: "По всем обязательствам: кредиты, займы, ЖКХ, налоги",
+        answers: [
+          { label: "Нет просрочек", points: 0 },
+          { label: "До 3 месяцев", points: 2 },
+          { label: "Более 3 месяцев", points: 3 },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Приставы",
+    icon: "🏛️",
+    questions: [
+      {
+        id: "bailiffs",
+        text: "Есть ли исполнительные производства?",
+        answers: [
+          { label: "Нет", points: 0 },
+          { label: "Есть", points: 3 },
+          { label: "Не знаю", points: 1 },
+        ],
+      },
+      {
+        id: "withdrawals",
+        text: "Есть ли списания со счетов?",
+        answers: [
+          { label: "Нет", points: 0 },
+          { label: "Иногда", points: 2 },
+          { label: "Да, регулярно", points: 3 },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Доход",
+    icon: "💼",
+    questions: [
+      {
+        id: "income",
+        text: "Есть ли официальный доход?",
+        answers: [
+          { label: "Да, стабильный", points: 0 },
+          { label: "Да, нестабильный", points: 1 },
+          { label: "Нет", points: 3 },
+        ],
+      },
+      {
+        id: "debt_load",
+        text: "Какую часть дохода занимают платежи по долгам?",
+        hint: "Учитывается только официальный доход",
+        answers: [
+          { label: "До 30%", points: 0 },
+          { label: "30–50%", points: 2 },
+          { label: "Более 50%", points: 3 },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Имущество",
+    icon: "🏠",
+    questions: [
+      {
+        id: "property",
+        text: "Есть ли у вас имущество?",
+        hint: "Единственное жильё (не в залоге) не учитывается",
+        answers: [
+          { label: "Нет / только единственное жильё", points: 0 },
+          { label: "Есть — готов к возможной потере", points: 2 },
+          { label: "Есть — потеря критична", points: 1 },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Сделки",
+    icon: "📋",
+    questions: [
+      {
+        id: "transactions",
+        text: "Были ли сделки с имуществом за последние 3 года?",
+        hint: "Продажа, дарение, обмен квартиры, авто, долей и т.д.",
+        answers: [
+          { label: "Нет сделок", points: 0 },
+          { label: "Да, на рыночных условиях", points: 1 },
+          { label: "Да, с родственниками или ниже рынка", points: 3 },
+        ],
+      },
+      {
+        id: "transfers",
+        text: "Были ли крупные переводы (более 300 тыс.) или дарения?",
+        answers: [
+          { label: "Нет", points: 0 },
+          { label: "Да", points: 2 },
+          { label: "Не знаю", points: 1 },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Семья",
+    icon: "👨‍👩‍👧",
+    questions: [
+      {
+        id: "children",
+        text: "Есть ли у вас дети?",
+        answers: [
+          { label: "Нет", points: 0 },
+          { label: "1 ребёнок", points: 1 },
+          { label: "2 и более детей", points: 2 },
+        ],
+      },
+      {
+        id: "dependants",
+        text: "Есть ли нетрудоспособные родственники на содержании?",
+        answers: [
+          { label: "Нет", points: 0 },
+          { label: "Частично", points: 1 },
+          { label: "Да", points: 2 },
+        ],
+      },
+    ],
+  },
+];
+
+function getResult(score: number) {
+  if (score <= 12) {
+    return {
+      level: "low",
+      color: "green",
+      emoji: "🟢",
+      label: "Низкая вероятность",
+      pct: "до 50%",
+      desc: "Ситуация стабильная. Банкротство маловероятно или преждевременно.",
+      advice: "Рекомендуем проконсультироваться, чтобы убедиться в правильности оценки.",
+    };
+  }
+  if (score <= 25) {
+    return {
+      level: "medium",
+      color: "yellow",
+      emoji: "🟡",
+      label: "Средняя вероятность",
+      pct: "50–80%",
+      desc: "Есть признаки финансовой несостоятельности. Рекомендуется провести индивидуальный анализ.",
+      advice: "Индивидуальный анализ поможет точнее оценить ситуацию и риски.",
+    };
+  }
+  return {
+    level: "high",
+    color: "red",
+    emoji: "🔴",
+    label: "Высокая вероятность",
+    pct: "80–95%",
+    desc: "Признаки неплатёжеспособности выражены. Процедура банкротства может быть применима.",
+    advice: "Рекомендуем получить индивидуальное правовое заключение до подачи документов.",
+  };
+}
+
+const MAX_SCORE = 40;
+
+export default function TestPage() {
+  const [currentScreen, setCurrentScreen] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, number>>({});
+  const [selectedLabels, setSelectedLabels] = useState<Record<string, string>>({});
+  const [done, setDone] = useState(false);
+
+  const screen = screens[currentScreen];
+
+  // All questions on current screen answered?
+  const screenAnswered = screen.questions.every((q) => q.id in answers);
+
+  const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);
+  const result = getResult(totalScore);
+  const pctScore = Math.round((totalScore / MAX_SCORE) * 100);
+
+  function handleAnswer(questionId: string, points: number) {
+    setAnswers((prev) => ({ ...prev, [questionId]: points }));
+  }
+
+  function handleNext() {
+    if (currentScreen < screens.length - 1) {
+      setCurrentScreen((s) => s + 1);
+    } else {
+      setDone(true);
+    }
+  }
+
+  function handleBack() {
+    if (currentScreen > 0) setCurrentScreen((s) => s - 1);
+  }
+
+  function handleReset() {
+    setAnswers({});
+    setSelectedLabels({});
+    setCurrentScreen(0);
+    setDone(false);
+  }
+
+  const progress = ((currentScreen + (done ? 1 : 0)) / screens.length) * 100;
+
+  // --- RESULT SCREEN ---
+  if (done) {
+    return (
+      <div className="flex flex-col min-h-full">
+        <Header />
+        <main className="flex-1 bg-slate-50">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
+            {/* Result card */}
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden mb-6">
+              <div className={`px-8 py-6 ${
+                result.level === "low" ? "bg-green-50" :
+                result.level === "medium" ? "bg-yellow-50" : "bg-red-50"
+              }`}>
+                <p className="text-sm font-medium text-slate-500 mb-1">Ваш предварительный результат готов</p>
+                <h1 className="text-2xl font-bold text-slate-900 mb-1">
+                  {result.emoji} {result.label}
+                </h1>
+                <p className="text-lg font-bold text-slate-700">Вероятность прохождения: {result.pct}</p>
+              </div>
+
+              <div className="px-8 py-6">
+                {/* Score bar */}
+                <div className="mb-6">
+                  <div className="flex justify-between text-sm text-slate-500 mb-2">
+                    <span>Ваш балл: {totalScore} из {MAX_SCORE}</span>
+                    <span>{pctScore}%</span>
+                  </div>
+                  <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all ${
+                        result.level === "low" ? "bg-green-500" :
+                        result.level === "medium" ? "bg-yellow-500" : "bg-red-500"
+                      }`}
+                      style={{ width: `${pctScore}%` }}
+                    />
+                  </div>
+                </div>
+
+                <p className="text-slate-600 mb-3">{result.desc}</p>
+                <div className="bg-slate-50 rounded-xl p-4 text-sm text-slate-600 mb-4">
+                  <p className="font-semibold text-slate-700 mb-1">⚖️ Важно учитывать:</p>
+                  <p>Это предварительная автоматическая оценка. Для юридически точного вывода требуется индивидуальный анализ с учётом всех факторов дела.</p>
+                </div>
+                <p className="text-sm text-slate-500">{result.advice}</p>
+              </div>
+            </div>
+
+            {/* What next */}
+            <h2 className="text-lg font-bold text-slate-900 mb-4">Что дальше</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+                <div className="text-2xl mb-2">🟢</div>
+                <h3 className="font-semibold text-slate-900 mb-1">Самостоятельно</h3>
+                <p className="text-sm text-slate-500 mb-4">Пошаговая система с инструкциями и шаблонами документов</p>
+                <Link href="/bankruptcy"
+                  className="block text-center bg-green-600 text-white text-sm font-medium py-2.5 rounded-xl hover:bg-green-700 transition-colors">
+                  Продолжить самостоятельно
+                </Link>
+              </div>
+              <div className="bg-[#0f3460] rounded-2xl p-6 text-white">
+                <div className="text-2xl mb-2">🔵</div>
+                <h3 className="font-semibold mb-1">С сопровождением</h3>
+                <p className="text-sm text-blue-200 mb-4">Юрист ведёт процедуру полностью за вас</p>
+                <Link href="/"
+                  className="block text-center bg-white text-[#0f3460] text-sm font-semibold py-2.5 rounded-xl hover:bg-blue-50 transition-colors">
+                  Получить сопровождение
+                </Link>
+              </div>
+            </div>
+
+            {/* Premium analysis */}
+            <div className="bg-white rounded-2xl border-2 border-[#0f3460] p-7 mb-6">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="font-bold text-slate-900 text-lg">💎 Индивидуальное правовое заключение</h3>
+                  <p className="text-sm text-slate-500 mt-1">Полная юридическая оценка вашей ситуации</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-slate-900">10 000 ₽</p>
+                  <p className="text-xs text-slate-400">Готово за 24 часа</p>
+                </div>
+              </div>
+              <ul className="space-y-2 mb-5">
+                {[
+                  "Анализ рисков отказа суда",
+                  "Оценка перспектив процедуры",
+                  "Разбор структуры долгов",
+                  "Юридическое заключение в PDF",
+                  "Рекомендации по дальнейшим действиям",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm text-slate-600">
+                    <span className="text-[#0f3460]">✓</span> {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="bg-red-50 border border-red-100 rounded-xl p-3 mb-4 text-sm text-red-700">
+                ⚠️ Без предварительного анализа существует риск подачи документов с ошибками, отказа в процедуре и дополнительных расходов.
+              </div>
+              <button className="w-full bg-[#0f3460] text-white font-semibold py-3.5 rounded-xl hover:bg-[#1a4f8a] transition-colors">
+                Получить анализ за 10 000 ₽
+              </button>
+              <p className="text-xs text-slate-400 text-center mt-2">Результат в течение 24 часов · формат PDF</p>
+            </div>
+
+            <button onClick={handleReset} className="w-full text-sm text-slate-400 hover:text-slate-600 py-2 transition-colors">
+              ← Пройти тест заново
+            </button>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // --- TEST SCREEN ---
+  return (
+    <div className="flex flex-col min-h-full">
+      <Header />
+      <main className="flex-1 bg-slate-50">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+
+          {/* Progress */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between text-sm text-slate-500 mb-2">
+              <span>Шаг {currentScreen + 1} из {screens.length}</span>
+              <span>{Math.round(progress)}% завершено</span>
+            </div>
+            <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#0f3460] rounded-full transition-all duration-500"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            {/* Step indicators */}
+            <div className="flex gap-1 mt-3">
+              {screens.map((s, i) => (
+                <button
+                  key={s.title}
+                  onClick={() => i < currentScreen && setCurrentScreen(i)}
+                  className={`flex-1 h-1.5 rounded-full transition-colors ${
+                    i < currentScreen ? "bg-[#0f3460] cursor-pointer" :
+                    i === currentScreen ? "bg-[#0f3460]/60" : "bg-slate-200 cursor-default"
+                  }`}
+                  title={s.title}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Screen card */}
+          <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+            <div className="bg-slate-50 border-b border-slate-100 px-7 py-5 flex items-center gap-3">
+              <span className="text-3xl">{screen.icon}</span>
+              <div>
+                <p className="text-xs text-slate-400 uppercase tracking-wide font-medium">
+                  Экран {currentScreen + 1}
+                </p>
+                <h2 className="text-xl font-bold text-slate-900">{screen.title}</h2>
+              </div>
+            </div>
+
+            <div className="px-7 py-6 space-y-8">
+              {screen.questions.map((question) => (
+                <div key={question.id}>
+                  <h3 className="font-semibold text-slate-900 mb-1">{question.text}</h3>
+                  {question.hint && (
+                    <p className="text-sm text-slate-400 mb-3">{question.hint}</p>
+                  )}
+                  <div className="space-y-2">
+                    {question.answers.map((answer) => {
+                      const isSelected = selectedLabels[question.id] === answer.label;
+                      return (
+                        <button
+                          key={answer.label}
+                          onClick={() => {
+                            handleAnswer(question.id, answer.points);
+                            setSelectedLabels((prev) => ({
+                              ...prev,
+                              [question.id]: answer.label,
+                            }));
+                          }}
+                          className={`w-full text-left px-4 py-3.5 rounded-xl border-2 text-sm font-medium transition-all ${
+                            isSelected
+                              ? "border-[#0f3460] bg-[#0f3460]/5 text-[#0f3460]"
+                              : "border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50"
+                          }`}
+                        >
+                          <span className={`inline-flex w-5 h-5 rounded-full border-2 mr-3 items-center justify-center flex-shrink-0 align-middle ${
+                            isSelected ? "border-[#0f3460] bg-[#0f3460]" : "border-slate-300"
+                          }`}>
+                            {isSelected && <span className="w-2 h-2 rounded-full bg-white inline-block" />}
+                          </span>
+                          {answer.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="px-7 pb-7 flex gap-3">
+              {currentScreen > 0 && (
+                <button
+                  onClick={handleBack}
+                  className="px-5 py-3 rounded-xl border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50 transition-colors"
+                >
+                  ← Назад
+                </button>
+              )}
+              <button
+                onClick={handleNext}
+                disabled={!screenAnswered}
+                className={`flex-1 py-3.5 rounded-xl text-sm font-semibold transition-all ${
+                  screenAnswered
+                    ? "bg-[#0f3460] text-white hover:bg-[#1a4f8a]"
+                    : "bg-slate-100 text-slate-400 cursor-not-allowed"
+                }`}
+              >
+                {currentScreen < screens.length - 1 ? "Далее →" : "Получить результат"}
+              </button>
+            </div>
+          </div>
+
+          <p className="text-center text-xs text-slate-400 mt-4">
+            Это ни к чему не обязывает · Результат формируется автоматически
+          </p>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}
