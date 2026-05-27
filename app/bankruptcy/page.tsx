@@ -7,128 +7,228 @@ export default function BankruptcyPage() {
     <div className="flex flex-col min-h-full">
       <Header />
       <main className="flex-1">
-
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-[#0f3460] to-[#1a4f8a] text-white py-16 md:py-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* ── HERO ── */}
+        <section className="relative overflow-hidden bg-[#06101e]">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 left-1/4 w-[500px] h-[350px] bg-[#0f3460]/40 rounded-full blur-[120px]" />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 md:py-36">
+            <div className="inline-flex items-center gap-2 bg-white/8 border border-white/10 rounded-full px-4 py-1.5 text-xs text-slate-300 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+              Банкротство физических лиц
+            </div>
             <div className="max-w-2xl">
-              <p className="text-blue-200 text-sm mb-3">⚖️ Банкротство физических лиц</p>
-              <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                Законный способ урегулировать долги
+              <h1 className="text-4xl md:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-5">
+                Законный способ
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-blue-500">
+                  урегулировать долги
+                </span>
               </h1>
-              <p className="text-blue-100 leading-relaxed mb-6">
-                Банкротство физического лица — официальная процедура, которая позволяет законно
-                урегулировать долги перед банками, МФО, налоговой и другими кредиторами.
+              <p className="text-slate-400 leading-relaxed mb-8 text-lg">
+                Банкротство физического лица — официальная процедура, которая
+                позволяет законно урегулировать долги перед банками, МФО,
+                налоговой и другими кредиторами.
               </p>
-              <Link href="/test"
-                className="inline-block bg-white text-[#0f3460] font-semibold px-6 py-3.5 rounded-xl hover:bg-blue-50 transition-colors">
-                Проверить мою ситуацию →
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/test"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#0f3460] font-semibold px-6 py-3.5 rounded-2xl hover:bg-blue-50 active:scale-[0.97] transition-all text-sm"
+                >
+                  Проверить мою ситуацию
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                </Link>
+                <a
+                  href="#scenarios"
+                  className="inline-flex items-center justify-center border border-white/10 text-slate-300 font-medium px-6 py-3.5 rounded-2xl hover:bg-white/5 hover:text-white transition-all text-sm"
+                >
+                  Посмотреть сценарии
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Когда применяется */}
-        <section className="py-14 bg-white">
+        {/* ── WHEN IT APPLIES ── */}
+        <section className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">Когда подходит процедура</h2>
-            <p className="text-slate-500 mb-8">Банкротство может подойти, если у вас есть хотя бы несколько из этих признаков</p>
+            <div className="mb-12">
+              <p className="text-xs font-semibold text-[#0f3460] uppercase tracking-widest mb-3">
+                Когда подходит
+              </p>
+              <h2 className="text-3xl font-bold text-slate-900 mb-2">
+                Признаки, что пора действовать
+              </h2>
+              <p className="text-slate-500">
+                Банкротство может подойти, если есть хотя бы несколько из этих
+                признаков
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
-                "Накопились просрочки по кредитам или займам",
-                "Нет возможности выплачивать долги",
-                "Удерживается большая часть дохода",
-                "Имеются исполнительные производства",
-                "Долги продолжают расти из-за процентов и штрафов",
-                "Кредиторы или коллекторы требуют оплату",
+                {
+                  icon: "📉",
+                  text: "Накопились просрочки по кредитам или займам",
+                },
+                { icon: "💸", text: "Нет возможности выплачивать долги" },
+                { icon: "📌", text: "Удерживается большая часть дохода" },
+                { icon: "⚖️", text: "Имеются исполнительные производства" },
+                { icon: "📈", text: "Долги растут из-за процентов и штрафов" },
+                { icon: "📞", text: "Кредиторы или коллекторы требуют оплату" },
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3 bg-slate-50 rounded-xl p-4">
-                  <span className="text-[#0f3460] mt-0.5 text-lg">→</span>
-                  <p className="text-sm text-slate-700 leading-relaxed">{item}</p>
+                <div
+                  key={item.text}
+                  className="flex items-start gap-4 bg-slate-50 rounded-2xl p-5 border border-slate-100"
+                >
+                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                  <p className="text-sm text-slate-700 leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
               ))}
             </div>
-            <div className="mt-6 bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-blue-800">
-              📌 Банкротство может проводиться через суд или во внесудебном порядке (через МФЦ) — в зависимости от суммы долгов и вашей ситуации.
+            <div className="mt-6 bg-blue-50 border border-blue-100 rounded-2xl p-5 flex items-start gap-3">
+              <span className="text-xl flex-shrink-0">📌</span>
+              <p className="text-sm text-blue-800">
+                Банкротство может проводиться через суд или во внесудебном
+                порядке через МФЦ — в зависимости от суммы долгов и вашей
+                ситуации.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Форматы */}
-        <section className="py-14 bg-slate-50">
+        {/* ── FORMATS ── */}
+        <section className="py-20 bg-slate-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 className="text-2xl font-bold text-slate-900 mb-8">Выбор формата прохождения</h2>
+            <div className="mb-12">
+              <p className="text-xs font-semibold text-[#0f3460] uppercase tracking-widest mb-3">
+                Формат
+              </p>
+              <h2 className="text-3xl font-bold text-slate-900">
+                Выберите формат прохождения
+              </h2>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
               {/* Self */}
-              <div className="bg-white rounded-2xl p-7 border border-slate-100 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">🟢</span>
-                  <h3 className="text-xl font-bold text-slate-900">Самостоятельное прохождение</h3>
+              <div className="bg-white rounded-3xl p-8 border border-slate-100">
+                <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Самостоятельно
                 </div>
-                <p className="text-slate-600 text-sm mb-5 leading-relaxed">
-                  Вы получаете пошаговую систему действий и проходите процедуру в понятном цифровом формате.
+                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  Цифровая система
+                </h3>
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                  Пошаговые инструкции, автоматически сформированные документы и
+                  полный контроль над процессом.
                 </p>
-                <h4 className="text-sm font-semibold text-slate-700 mb-3">Что включено:</h4>
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2.5 mb-8">
                   {[
                     "Заполнение анкеты",
                     "Анализ долговой нагрузки",
                     "Автоматическое формирование заявлений",
                     "Подготовка списка кредиторов",
-                    "Загрузка документов",
                     "Инструкция по подаче",
                   ].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-slate-600">
-                      <span className="text-green-500">✓</span> {item}
+                    <li
+                      key={item}
+                      className="flex items-center gap-2.5 text-sm text-slate-600"
+                    >
+                      <svg
+                        className="w-4 h-4 text-emerald-500 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      {item}
                     </li>
                   ))}
                 </ul>
-                <div className="bg-green-50 rounded-xl p-3 mb-4 text-sm text-green-800">
-                  📁 На выходе — готовый комплект документов для запуска процедуры банкротства
+                <div className="flex items-center justify-between mb-5">
+                  <div>
+                    <p className="text-3xl font-bold text-slate-900">
+                      20 000 ₽
+                    </p>
+                    <p className="text-xs text-slate-400 mt-0.5">
+                      + обязательные судебные расходы
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-2xl font-bold text-slate-900">20 000 ₽</span>
-                  <span className="text-xs text-slate-400">+ обязательные судебные расходы</span>
-                </div>
-                <Link href="/test"
-                  className="block w-full text-center bg-green-600 text-white font-medium py-3 rounded-xl hover:bg-green-700 transition-colors text-sm">
+                <Link
+                  href="/test"
+                  className="block w-full text-center bg-slate-900 text-white font-semibold py-3.5 rounded-2xl hover:bg-slate-800 active:scale-[0.98] transition-all text-sm"
+                >
                   Начать самостоятельно
                 </Link>
               </div>
 
               {/* Supported */}
-              <div className="bg-[#0f3460] rounded-2xl p-7 text-white relative">
-                <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs font-bold px-2.5 py-1 rounded-full">
-                  ⭐ Чаще выбирают
+              <div className="bg-[#0f3460] rounded-3xl p-8 text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="inline-flex items-center gap-2 bg-white/10 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+                  <span>⭐</span> Чаще выбирают
                 </div>
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">🔵</span>
-                  <h3 className="text-xl font-bold">С сопровождением</h3>
-                </div>
-                <p className="text-blue-200 text-sm mb-5 leading-relaxed">
-                  Юрист ведёт процедуру, вы минимально вовлечены. Подходит, если важно снизить риски.
+                <h3 className="text-xl font-bold mb-3">
+                  С юридическим сопровождением
+                </h3>
+                <p className="text-blue-200 text-sm mb-6 leading-relaxed">
+                  Юрист ведёт процедуру — вы минимально вовлечены. Подходит,
+                  если важно снизить риски.
                 </p>
-                <h4 className="text-sm font-semibold text-blue-200 mb-3">Что включено:</h4>
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2.5 mb-8">
                   {[
-                    "Анализ ситуации",
-                    "Подготовка документов",
+                    "Анализ ситуации и рисков",
+                    "Подготовка всех документов",
                     "Подача в суд",
                     "Сопровождение до завершения",
-                    "Взаимодействие с судом и управляющим",
-                    "Защита при сложных ситуациях",
+                    "Взаимодействие с управляющим",
+                    "Защита при спорных ситуациях",
                   ].map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-blue-100">
-                      <span className="text-blue-300">✓</span> {item}
+                    <li
+                      key={item}
+                      className="flex items-center gap-2.5 text-sm text-blue-100"
+                    >
+                      <svg
+                        className="w-4 h-4 text-blue-300 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      {item}
                     </li>
                   ))}
                 </ul>
-                <div className="bg-white/10 rounded-xl p-3 mb-5 text-sm text-blue-100">
-                  Подходит при наличии имущества, сделок или нестандартной ситуации
-                </div>
-                <Link href="/test"
-                  className="block w-full text-center bg-white text-[#0f3460] font-semibold py-3 rounded-xl hover:bg-blue-50 transition-colors text-sm">
+                <Link
+                  href="/test"
+                  className="block w-full text-center bg-white text-[#0f3460] font-semibold py-3.5 rounded-2xl hover:bg-blue-50 active:scale-[0.98] transition-all text-sm"
+                >
                   Получить сопровождение
                 </Link>
               </div>
@@ -136,62 +236,82 @@ export default function BankruptcyPage() {
           </div>
         </section>
 
-        {/* Сценарии */}
-        <section className="py-14 bg-white">
+        {/* ── SCENARIOS ── */}
+        <section id="scenarios" className="py-20 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 className="text-2xl font-bold text-slate-900 mb-2">Какой вариант банкротства вам подойдёт</h2>
-            <p className="text-slate-500 mb-8">Система автоматически определяет подходящий сценарий</p>
+            <div className="mb-12">
+              <p className="text-xs font-semibold text-[#0f3460] uppercase tracking-widest mb-3">
+                Сценарии
+              </p>
+              <h2 className="text-3xl font-bold text-slate-900 mb-2">
+                Какой вариант вам подойдёт
+              </h2>
+              <p className="text-slate-500">
+                Система автоматически определяет подходящий сценарий по вашим
+                ответам
+              </p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
                 {
-                  code: "А",
+                  label: "А",
+                  color: "bg-blue-500",
+                  bg: "bg-blue-50 border-blue-100",
                   title: "Внесудебное через МФЦ",
                   when: [
                     "Размер долгов соответствует условиям",
                     "Есть завершённые исполнительные производства",
                   ],
                   note: "Формируется заявление для подачи через МФЦ",
-                  color: "blue",
                 },
                 {
-                  code: "Б",
+                  label: "Б",
+                  color: "bg-violet-500",
+                  bg: "bg-violet-50 border-violet-100",
                   title: "Судебное банкротство",
                   when: [
                     "Значительный размер задолженности",
                     "Имеются активные взыскания",
                   ],
                   note: "Формируется заявление в арбитражный суд",
-                  color: "purple",
                 },
                 {
-                  code: "В",
+                  label: "В",
+                  color: "bg-orange-500",
+                  bg: "bg-orange-50 border-orange-100",
                   title: "При наличии имущества",
                   when: [
                     "У заявителя есть имущество",
-                    "Были сделки с имуществом за последние 3 года",
+                    "Были сделки за последние 3 года",
                   ],
                   note: "Формируется расширенный комплект документов",
-                  color: "orange",
                 },
-              ].map((scenario) => (
-                <div key={scenario.code} className="border border-slate-100 rounded-2xl p-6">
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-lg mb-4 ${
-                    scenario.color === "blue" ? "bg-blue-500" :
-                    scenario.color === "purple" ? "bg-purple-500" : "bg-orange-500"
-                  }`}>
-                    {scenario.code}
+              ].map((s) => (
+                <div key={s.label} className={`rounded-3xl p-6 border ${s.bg}`}>
+                  <div
+                    className={`w-10 h-10 rounded-xl ${s.color} flex items-center justify-center text-white font-bold text-base mb-5`}
+                  >
+                    {s.label}
                   </div>
-                  <h3 className="font-bold text-slate-900 mb-3">{scenario.title}</h3>
-                  <p className="text-xs text-slate-400 font-medium uppercase tracking-wide mb-2">Когда применяется:</p>
-                  <ul className="space-y-1.5 mb-4">
-                    {scenario.when.map((w) => (
-                      <li key={w} className="flex items-start gap-2 text-sm text-slate-600">
-                        <span className="text-slate-400 mt-0.5">•</span> {w}
+                  <h3 className="font-bold text-slate-900 mb-4">{s.title}</h3>
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-2">
+                    Когда применяется
+                  </p>
+                  <ul className="space-y-2 mb-5">
+                    {s.when.map((w) => (
+                      <li
+                        key={w}
+                        className="flex items-start gap-2 text-sm text-slate-600"
+                      >
+                        <span className="text-slate-300 mt-0.5 flex-shrink-0">
+                          •
+                        </span>{" "}
+                        {w}
                       </li>
                     ))}
                   </ul>
-                  <div className="bg-slate-50 rounded-lg p-3 text-xs text-slate-500">
-                    📌 {scenario.note}
+                  <div className="bg-white/60 rounded-xl p-3 text-xs text-slate-500 border border-white">
+                    📌 {s.note}
                   </div>
                 </div>
               ))}
@@ -199,51 +319,67 @@ export default function BankruptcyPage() {
           </div>
         </section>
 
-        {/* Шаги */}
-        <section className="py-14 bg-slate-50">
+        {/* ── STEPS ── */}
+        <section className="py-20 bg-slate-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">Как это работает</h2>
-            <div className="space-y-4">
+            <div className="text-center mb-12">
+              <p className="text-xs font-semibold text-[#0f3460] uppercase tracking-widest mb-3">
+                Процесс
+              </p>
+              <h2 className="text-3xl font-bold text-slate-900">
+                Как это работает
+              </h2>
+            </div>
+            <div className="space-y-3">
               {[
                 {
                   step: "01",
                   title: "Анализ ситуации",
                   desc: "Пройдите бесплатный тест за 3 минуты. Получите предварительную оценку вероятности процедуры.",
-                  cta: null,
+                  badge: null,
                 },
                 {
                   step: "02",
                   title: "Правовое заключение",
-                  desc: "Индивидуальный анализ вашей ситуации от юриста. Юридически точная оценка рисков и рекомендации.",
-                  cta: "10 000 ₽",
+                  desc: "Индивидуальный анализ от юриста. Юридически точная оценка рисков и рекомендации.",
+                  badge: "10 000 ₽",
                 },
                 {
                   step: "03",
-                  title: "Заполнение анкеты",
-                  desc: "Внесите данные о долгах, кредиторах, имуществе. Система автоматически формирует документы.",
-                  cta: null,
+                  title: "Подготовка документов",
+                  desc: "Внесите данные о долгах и кредиторах. Система автоматически формирует все заявления.",
+                  badge: null,
                 },
                 {
                   step: "04",
-                  title: "Готовый пакет документов",
-                  desc: "Скачайте ZIP-архив со всеми документами: заявление, список кредиторов, инструкция по подаче.",
-                  cta: null,
+                  title: "Готовый пакет",
+                  desc: "Скачайте ZIP-архив: заявление, список кредиторов, инструкция по подаче.",
+                  badge: null,
                 },
-              ].map((item, i) => (
-                <div key={item.step} className="flex gap-5 bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#0f3460]/10 flex items-center justify-center">
-                    <span className="text-[#0f3460] font-bold text-sm">{item.step}</span>
+              ].map((item) => (
+                <div
+                  key={item.step}
+                  className="flex gap-5 bg-white rounded-2xl p-6 border border-slate-100"
+                >
+                  <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-[#0f3460]/8 flex items-center justify-center">
+                    <span className="text-[#0f3460] font-bold text-sm">
+                      {item.step}
+                    </span>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-1">
-                      <h3 className="font-semibold text-slate-900">{item.title}</h3>
-                      {item.cta && (
-                        <span className="text-xs bg-[#0f3460]/10 text-[#0f3460] font-medium px-2.5 py-0.5 rounded-full">
-                          {item.cta}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-1.5 flex-wrap">
+                      <h3 className="font-semibold text-slate-900">
+                        {item.title}
+                      </h3>
+                      {item.badge && (
+                        <span className="text-xs bg-[#0f3460]/8 text-[#0f3460] font-semibold px-2.5 py-0.5 rounded-full">
+                          {item.badge}
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm text-slate-500 leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -251,37 +387,87 @@ export default function BankruptcyPage() {
           </div>
         </section>
 
-        {/* Обязательные расходы */}
-        <section className="py-14 bg-white">
+        {/* ── MANDATORY COSTS ── */}
+        <section className="py-20 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-8">
-              <h2 className="text-xl font-bold text-amber-900 mb-1">⚠️ Обязательные расходы по закону</h2>
-              <p className="text-amber-700 text-sm mb-6">Вне зависимости от выбранного формата:</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+            <div className="bg-amber-50 border border-amber-200 rounded-3xl p-8">
+              <div className="flex items-start gap-3 mb-6">
+                <span className="text-2xl">⚠️</span>
+                <div>
+                  <h2 className="text-xl font-bold text-amber-900">
+                    Обязательные расходы по закону
+                  </h2>
+                  <p className="text-amber-700 text-sm mt-1">
+                    Вне зависимости от выбранного формата — определены
+                    Федеральным законом
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 {[
-                  { amount: "25 000 ₽", label: "Вознаграждение арбитражного управляющего" },
+                  {
+                    amount: "25 000 ₽",
+                    label: "Вознаграждение арбитражного управляющего",
+                  },
                   { amount: "15 000 ₽", label: "Публикации в реестрах" },
                 ].map((item) => (
-                  <div key={item.label} className="bg-white rounded-xl p-4 border border-amber-100">
-                    <p className="text-2xl font-bold text-slate-900 mb-1">{item.amount}</p>
+                  <div
+                    key={item.label}
+                    className="bg-white rounded-2xl p-5 border border-amber-100"
+                  >
+                    <p className="text-3xl font-bold text-slate-900 mb-1">
+                      {item.amount}
+                    </p>
                     <p className="text-sm text-slate-600">{item.label}</p>
                   </div>
                 ))}
               </div>
-              <div className="space-y-1 text-sm text-amber-800">
-                <p>✅ Госпошлина для физических лиц не требуется</p>
-                <p>✅ Платежи регулируются законодательством</p>
-                <p>✅ Без скрытых комиссий</p>
+              <div className="flex flex-col gap-1.5">
+                {[
+                  "Госпошлина для физических лиц не требуется",
+                  "Платежи регулируются законодательством",
+                  "Без скрытых комиссий",
+                ].map((t) => (
+                  <div
+                    key={t}
+                    className="flex items-center gap-2 text-sm text-amber-800"
+                  >
+                    <svg
+                      className="w-4 h-4 text-emerald-500 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2.5}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {t}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* Когда нужен юрист */}
-        <section className="py-14 bg-slate-50">
+        {/* ── WHEN LAWYER NEEDED ── */}
+        <section className="py-20 bg-slate-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 className="text-2xl font-bold text-slate-900 mb-3">Когда особенно важно сопровождение</h2>
-            <p className="text-slate-500 mb-8">В этих ситуациях риски выше — рекомендуется не проходить самостоятельно</p>
+            <div className="mb-12">
+              <p className="text-xs font-semibold text-[#0f3460] uppercase tracking-widest mb-3">
+                Риски
+              </p>
+              <h2 className="text-3xl font-bold text-slate-900 mb-2">
+                Когда особенно важно сопровождение
+              </h2>
+              <p className="text-slate-500">
+                В этих ситуациях риски выше — не рекомендуется проходить
+                самостоятельно
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 "Есть имущество, которое может затронуть процедура",
@@ -291,27 +477,50 @@ export default function BankruptcyPage() {
                 "Есть совместное имущество супругов",
                 "Имеются риски оспаривания сделок",
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-slate-100">
-                  <span className="text-red-400 mt-0.5">⚠️</span>
-                  <p className="text-sm text-slate-700 leading-relaxed">{item}</p>
+                <div
+                  key={item}
+                  className="flex items-start gap-3 bg-white rounded-2xl p-5 border border-slate-100"
+                >
+                  <span className="text-lg flex-shrink-0">⚠️</span>
+                  <p className="text-sm text-slate-700 leading-relaxed">
+                    {item}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 bg-gradient-to-br from-[#0f3460] to-[#1a4f8a]">
+        {/* ── CTA ── */}
+        <section className="py-20 bg-[#06101e]">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-            <h2 className="text-2xl font-bold text-white mb-3">Начните с бесплатного анализа</h2>
-            <p className="text-blue-200 mb-6">Проверьте свою ситуацию за 3 минуты — это ни к чему не обязывает</p>
-            <Link href="/test"
-              className="inline-block bg-white text-[#0f3460] font-semibold px-8 py-3.5 rounded-xl hover:bg-blue-50 transition-colors">
-              Пройти анализ ситуации →
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Начните с бесплатного анализа
+            </h2>
+            <p className="text-slate-400 mb-8">
+              Проверьте свою ситуацию за 3 минуты — это ни к чему не обязывает
+            </p>
+            <Link
+              href="/test"
+              className="inline-flex items-center gap-2 bg-white text-[#0f3460] font-semibold px-8 py-4 rounded-2xl hover:bg-blue-50 active:scale-[0.97] transition-all"
+            >
+              Пройти анализ ситуации
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
             </Link>
           </div>
         </section>
-
       </main>
       <Footer />
     </div>
