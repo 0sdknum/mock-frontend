@@ -330,7 +330,7 @@ export default function HomePage() {
                     <div className="space-y-2 mb-3">
                       <div className="bg-white/10 rounded-2xl rounded-tl-sm px-3 py-2">
                         <p className="text-xs text-slate-300">
-                          Заявление подано в суд. Номер дела: А40-112345/2025
+                          Заявление подано в суд. Номер дела: А40-112345/2026
                         </p>
                         <p className="text-xs text-slate-500 mt-1">10:32</p>
                       </div>
