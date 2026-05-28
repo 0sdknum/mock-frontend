@@ -1,10 +1,37 @@
 @import "tailwindcss";
 
+/* ── Dark mode via .dark class on <html> ── */
+@variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ── */
 :root {
+  --bg:        #ffffff;
+  --bg-subtle: #f7f9fc;
+  --bg-muted:  #eef3ff;
+  --bg-card:   #ffffff;
+  --border:    #e2e8f0;
+  --ink:       #0f172a;
+  --ink-2:     #64748b;
+  --ink-3:     #94a3b8;
+  --brand-t:   #1a3c72;
   --background: #ffffff;
-  --foreground: #0f1923;
-  --brand: #0f3460;
-  --brand-light: #1a4f8a;
+  --foreground: #0f172a;
+  --brand: #1a3c72;
+  --cta: #ff5c28;
+}
+
+.dark {
+  --bg:        #0d1829;
+  --bg-subtle: #0a1525;
+  --bg-muted:  #102040;
+  --bg-card:   #122033;
+  --border:    #1c3050;
+  --ink:       #dde9ff;
+  --ink-2:     #7a9bc0;
+  --ink-3:     #3a5478;
+  --brand-t:   #5b8fd9;
+  --background: #0d1829;
+  --foreground: #dde9ff;
 }
 
 @theme inline {
@@ -14,17 +41,16 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* Subtle scrollbar */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
-::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar              { width: 6px; height: 6px; }
+::-webkit-scrollbar-track        { background: transparent; }
+::-webkit-scrollbar-thumb        { background: #cbd5e1; border-radius: 9999px; }
+.dark ::-webkit-scrollbar-thumb  { background: #1e3154; }
+::-webkit-scrollbar-thumb:hover  { background: #94a3b8; }

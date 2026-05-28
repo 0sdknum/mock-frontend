@@ -2,27 +2,27 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#06101e] text-slate-400">
+    <footer className="bg-[var(--bg-card)] border-t border-[var(--border)] dark:bg-[#06101e] dark:border-transparent text-[var(--ink-3)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-[#1a3c72] dark:bg-white/10 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">Д</span>
               </div>
-              <span className="font-bold text-base text-white tracking-tight">
+              <span className="font-bold text-base text-[var(--ink)] dark:text-white tracking-tight">
                 ДОКСИ
               </span>
             </div>
-            <p className="text-sm text-slate-500 leading-relaxed max-w-[220px]">
+            <p className="text-sm text-[var(--ink-2)] leading-relaxed max-w-[220px]">
               Цифровая юридическая платформа для физических лиц.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Услуги</h4>
+            <h4 className="text-[var(--ink)] dark:text-white font-semibold text-sm mb-4">Услуги</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link
@@ -53,7 +53,7 @@ export default function Footer() {
 
           {/* Info */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">
+            <h4 className="text-[var(--ink)] dark:text-white font-semibold text-sm mb-4">
               Информация
             </h4>
             <ul className="space-y-2.5 text-sm">
@@ -77,7 +77,7 @@ export default function Footer() {
 
           {/* Contacts */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Контакты</h4>
+            <h4 className="text-[var(--ink)] dark:text-white font-semibold text-sm mb-4">Контакты</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a
@@ -99,7 +99,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/5 mt-10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-slate-600">
+        <div className="border-t border-[var(--border)] dark:border-white/5 mt-10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[var(--ink-2)]">
           <p>© {new Date().getFullYear()} ДОКСИ. Все права защищены.</p>
           <p>
             Информация носит ознакомительный характер и не является публичной
