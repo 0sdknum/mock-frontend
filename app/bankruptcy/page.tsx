@@ -15,7 +15,7 @@ export default function BankruptcyPage() {
           </div>
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-24 md:py-36">
             <div className="inline-flex items-center gap-2 bg-[var(--bg-card)] border border-[#1a3c72]/10 rounded-full px-4 py-1.5 text-xs text-[var(--brand-t)] font-semibold mb-8 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1a3c72]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2563eb] dark:bg-[#1a3c72]" />
               Банкротство физических лиц
             </div>
             <div className="max-w-2xl">
@@ -134,14 +134,14 @@ export default function BankruptcyPage() {
                 </div>
                 <Link
                   href="/test"
-                  className="block w-full text-center bg-[#1a3c72] text-white font-bold py-3.5 rounded-2xl hover:bg-[#0f2d5e] active:scale-[0.98] transition-all text-sm"
+                  className="block w-full text-center bg-gradient-to-r from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] text-white font-bold py-3.5 rounded-2xl hover:opacity-90 active:scale-[0.98] transition-all text-sm"
                 >
                   Начать самостоятельно
                 </Link>
               </div>
 
               {/* Supported */}
-              <div className="bg-[#1a3c72] rounded-3xl p-8 text-white relative overflow-hidden border-2 border-[#1a3c72]">
+              <div className="bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] rounded-3xl p-8 text-white relative overflow-hidden border-2 border-transparent">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
                 <div className="inline-flex items-center gap-2 bg-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-6">
                   <span>⭐</span> Чаще выбирают

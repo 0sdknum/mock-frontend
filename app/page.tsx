@@ -129,7 +129,7 @@ export default function HomePage() {
               ].map((s) => (
                 <Link key={s.title} href={s.href}
                   className={`group rounded-3xl p-7 flex flex-col hover:shadow-2xl transition-all duration-200 ${
-                    s.accent ? "bg-[#1a3c72] text-white" : "bg-[var(--bg-card)] border-2 border-[var(--border)] hover:border-[#1a3c72]/20"
+                    s.accent ? "bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] text-white" : "bg-[var(--bg-card)] border-2 border-[var(--border)] hover:border-[#1a3c72]/20"
                   }`}>
                   <div className="flex items-center justify-between mb-6">
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl ${s.accent ? "bg-white/10" : "bg-[var(--bg-muted)]"}`}>
@@ -156,7 +156,7 @@ export default function HomePage() {
         {/* ── CABINET PROMO ── */}
         <section className="py-20 bg-[var(--bg)]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="bg-[#1a3c72] rounded-[2rem] overflow-hidden">
+            <div className="bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] rounded-[2rem] overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="p-10 md:p-14">
                   <p className="text-xs font-bold text-blue-300 uppercase tracking-widest mb-4">Личный кабинет</p>
@@ -194,8 +194,8 @@ export default function HomePage() {
 
                 {/* Mock chat preview */}
                 <div className="hidden md:flex items-center justify-center p-10">
-                  <div className="bg-white/8 border border-white/10 rounded-2xl p-5 w-full max-w-xs backdrop-blur-sm">
-                    <div className="flex items-center gap-2.5 mb-4 pb-4 border-b border-white/10">
+                  <div className="bg-white/15 border border-white/25 rounded-2xl p-5 w-full max-w-xs backdrop-blur-sm">
+                    <div className="flex items-center gap-2.5 mb-4 pb-4 border-b border-white/20">
                       <div className="w-8 h-8 rounded-full bg-[#ff5c28] flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-bold">АП</span>
                       </div>
@@ -203,26 +203,26 @@ export default function HomePage() {
                         <p className="text-xs font-bold text-white">Алексей Петров</p>
                         <div className="flex items-center gap-1">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                          <p className="text-xs text-blue-300">Онлайн</p>
+                          <p className="text-xs text-blue-100">Онлайн</p>
                         </div>
                       </div>
                     </div>
                     <div className="space-y-2 mb-3">
-                      <div className="bg-white/10 rounded-2xl rounded-tl-sm px-3 py-2">
-                        <p className="text-xs text-slate-300">Заявление подано. Дело А40-112345/2026</p>
-                        <p className="text-xs text-blue-400 mt-1">10:32</p>
+                      <div className="bg-white/20 rounded-2xl rounded-tl-sm px-3 py-2">
+                        <p className="text-xs text-white/90">Заявление подано. Дело А40-112345/2026</p>
+                        <p className="text-xs text-white/50 mt-1">10:32</p>
                       </div>
                       <div className="bg-[#ff5c28] rounded-2xl rounded-tr-sm px-3 py-2 ml-8">
                         <p className="text-xs text-white">Нужно присутствовать?</p>
                         <p className="text-xs text-orange-200 mt-1 text-right">11:05</p>
                       </div>
-                      <div className="bg-white/10 rounded-2xl rounded-tl-sm px-3 py-2">
-                        <p className="text-xs text-slate-300">Да, я буду рядом. Беспокоиться не о чём.</p>
-                        <p className="text-xs text-blue-400 mt-1">11:18</p>
+                      <div className="bg-white/20 rounded-2xl rounded-tl-sm px-3 py-2">
+                        <p className="text-xs text-white/90">Да, я буду рядом. Беспокоиться не о чём.</p>
+                        <p className="text-xs text-white/50 mt-1">11:18</p>
                       </div>
                     </div>
-                    <div className="bg-white/5 border border-white/10 rounded-xl px-3 py-2 flex items-center gap-2">
-                      <p className="text-xs text-blue-400 flex-1">Написать юристу...</p>
+                    <div className="bg-white/15 border border-white/25 rounded-xl px-3 py-2 flex items-center gap-2">
+                      <p className="text-xs text-white/60 flex-1">Написать юристу...</p>
                       <div className="w-6 h-6 rounded-lg bg-[#ff5c28] flex items-center justify-center">
                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -287,7 +287,7 @@ export default function HomePage() {
                   </div>
                   <p className="text-sm text-[var(--ink-2)] leading-relaxed mb-5 font-medium">"{r.text}"</p>
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-full bg-[#1a3c72] flex items-center justify-center text-xs font-black text-white">
+                    <div className="w-9 h-9 rounded-full bg-[#2563eb] dark:bg-[#1a3c72] flex items-center justify-center text-xs font-black text-white">
                       {r.name[0]}
                     </div>
                     <div>

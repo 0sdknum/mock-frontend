@@ -96,7 +96,7 @@ export default function Header() {
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
-          <div className="w-8 h-8 rounded-xl bg-[#1a3c72] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] flex items-center justify-center">
             <span className="text-white font-bold text-sm">Д</span>
           </div>
           <span className="font-bold text-[17px] text-[#1a3c72] dark:text-[#5b8fd9] tracking-tight">ДОКСИ</span>
@@ -129,7 +129,7 @@ export default function Header() {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-xl hover:bg-[var(--bg-subtle)] transition-colors"
               >
-                <div className="w-8 h-8 rounded-full bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#2563eb] dark:bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
                   <span className="text-white text-xs font-bold">{user.initials}</span>
                 </div>
                 <span className="text-sm font-semibold text-[var(--ink)]">{user.name.split(" ")[0]}</span>

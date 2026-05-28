@@ -78,7 +78,7 @@ export default function AuthModal() {
         {/* Header */}
         <div className="px-8 pt-8 pb-0">
           <div className="flex items-center gap-2.5 mb-6">
-            <div className="w-9 h-9 rounded-xl bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-sm">Д</span>
             </div>
             <span className="font-bold text-lg text-[var(--brand-t)] tracking-tight">ДОКСИ</span>

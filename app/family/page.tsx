@@ -183,7 +183,7 @@ export default function FamilyPage() {
 
                   <div className="flex gap-2 pt-5 border-t border-[var(--border)]">
                     <Link href="/test"
-                      className="flex-1 text-center bg-[#1a3c72] text-white text-xs font-bold py-2.5 rounded-xl hover:bg-[#0f2d5e] transition-colors">
+                      className="flex-1 text-center bg-gradient-to-r from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] text-white text-xs font-bold py-2.5 rounded-xl hover:opacity-90 transition-all">
                       Самостоятельно
                     </Link>
                     <button className="flex-1 text-center border-2 border-[#ff5c28] text-[#ff5c28] text-xs font-bold py-2.5 rounded-xl hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors">
@@ -228,7 +228,7 @@ export default function FamilyPage() {
                   ))}
                 </ul>
               </div>
-              <div className="bg-[#1a3c72] rounded-3xl p-7 text-white">
+              <div className="bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] rounded-3xl p-7 text-white">
                 <div className="inline-flex items-center gap-2 bg-white/15 text-white text-xs font-bold px-3 py-1.5 rounded-full mb-5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#ff5c28]" />
                   С сопровождением

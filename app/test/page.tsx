@@ -296,11 +296,11 @@ export default function TestPage() {
                 <h3 className="font-bold text-[var(--ink)] mb-1">Самостоятельно</h3>
                 <p className="text-sm text-[var(--ink-2)] mb-4">Пошаговая система с инструкциями и шаблонами документов</p>
                 <Link href="/bankruptcy"
-                  className="block text-center bg-[#1a3c72] text-white text-sm font-bold py-2.5 rounded-xl hover:bg-[#0f2d5e] transition-colors">
+                  className="block text-center bg-gradient-to-r from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] text-white text-sm font-bold py-2.5 rounded-xl hover:opacity-90 transition-all">
                   Продолжить самостоятельно
                 </Link>
               </div>
-              <div className="bg-[#1a3c72] rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] rounded-2xl p-6 text-white">
                 <div className="text-2xl mb-2">🔵</div>
                 <h3 className="font-bold mb-1">С сопровождением</h3>
                 <p className="text-sm text-blue-200 mb-4">Юрист ведёт процедуру полностью за вас</p>
@@ -373,7 +373,7 @@ export default function TestPage() {
             </div>
             <div className="h-2 bg-[var(--bg-muted)] rounded-full overflow-hidden">
               <div
-                className="h-full bg-[#1a3c72] rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] rounded-full transition-all duration-500"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -384,7 +384,7 @@ export default function TestPage() {
                   key={s.title}
                   onClick={() => i < currentScreen && setCurrentScreen(i)}
                   className={`flex-1 h-1.5 rounded-full transition-colors ${
-                    i < currentScreen ? "bg-[#1a3c72] cursor-pointer" :
+                    i < currentScreen ? "bg-gradient-to-r from-[#3b7fe8] to-[#1d52c8] dark:from-[#1a3c72] dark:to-[#0e2a5a] cursor-pointer" :
                     i === currentScreen ? "bg-[#ff5c28]" : "bg-[var(--border)] cursor-default"
                   }`}
                   title={s.title}
@@ -432,7 +432,7 @@ export default function TestPage() {
                           }`}
                         >
                           <span className={`inline-flex w-5 h-5 rounded-full border-2 mr-3 items-center justify-center flex-shrink-0 align-middle ${
-                            isSelected ? "border-[#1a3c72] bg-[#1a3c72]" : "border-[var(--border)]"
+                            isSelected ? "border-[#2563eb] bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:border-[#1a3c72] dark:from-[#1a3c72] dark:to-[#0e2a5a]" : "border-[var(--border)]"
                           }`}>
                             {isSelected && <span className="w-2 h-2 rounded-full bg-white inline-block" />}
                           </span>

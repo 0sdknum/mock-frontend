@@ -128,7 +128,7 @@ export default function CaseDetailClient({ id }: { id: string }) {
                 <p className="text-sm text-[var(--ink-3)]">Дело № {caseData.caseNumber} · Открыто {caseData.createdAt}</p>
               </div>
               <div className="flex items-center gap-2.5 bg-[var(--bg-muted)] border-2 border-[#1a3c72]/10 rounded-xl px-3 py-2">
-                <div className="w-7 h-7 rounded-full bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-[#2563eb] dark:bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
                   <span className="text-white text-xs font-bold">{caseData.lawyer.initials}</span>
                 </div>
                 <div>
@@ -299,7 +299,7 @@ export default function CaseDetailClient({ id }: { id: string }) {
             <div className="max-w-2xl">
               <div className="bg-[var(--bg-card)] rounded-2xl border-2 border-[var(--border)] overflow-hidden flex flex-col" style={{ height: "560px" }}>
                 <div className="flex items-center gap-3 px-5 py-4 border-b-2 border-[var(--border)] bg-[var(--bg-muted)]">
-                  <div className="w-9 h-9 rounded-full bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-[#2563eb] dark:bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-xs font-bold">{caseData.lawyer.initials}</span>
                   </div>
                   <div>
@@ -327,12 +327,12 @@ export default function CaseDetailClient({ id }: { id: string }) {
                         )}
                         <div className={`flex items-end gap-2 ${isUser ? "flex-row-reverse" : ""}`}>
                           {!isUser && (
-                            <div className="w-7 h-7 rounded-full bg-[#1a3c72] flex items-center justify-center flex-shrink-0 mb-1">
+                            <div className="w-7 h-7 rounded-full bg-[#2563eb] dark:bg-[#1a3c72] flex items-center justify-center flex-shrink-0 mb-1">
                               <span className="text-white text-xs font-bold">{caseData.lawyer.initials}</span>
                             </div>
                           )}
                           <div className={`max-w-[78%] rounded-2xl px-4 py-2.5 ${
-                            isUser ? "bg-[#1a3c72] text-white rounded-br-sm" : "bg-[var(--bg-muted)] text-[var(--ink)] rounded-bl-sm"
+                            isUser ? "bg-[#2563eb] dark:bg-[#1a3c72] text-white rounded-br-sm" : "bg-[var(--bg-muted)] text-[var(--ink)] rounded-bl-sm"
                           }`}>
                             <p className="text-sm leading-relaxed">{msg.text}</p>
                             <p className={`text-xs mt-1 ${isUser ? "text-white/60 text-right" : "text-[var(--ink-3)]"}`}>{msg.time}</p>
@@ -343,7 +343,7 @@ export default function CaseDetailClient({ id }: { id: string }) {
                   })}
                   {sending && (
                     <div className="flex items-end gap-2">
-                      <div className="w-7 h-7 rounded-full bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-[#2563eb] dark:bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-bold">{caseData.lawyer.initials}</span>
                       </div>
                       <div className="bg-[var(--bg-muted)] rounded-2xl rounded-bl-sm px-4 py-3">

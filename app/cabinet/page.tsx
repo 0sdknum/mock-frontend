@@ -225,7 +225,7 @@ export default function CabinetPage() {
                 <div className="space-y-3">
                   {MOCK_CASES.filter((c) => c.status !== "completed").map((c) => (
                     <Link key={c.id} href={`/cabinet/case/${c.id}`} className="flex items-center gap-3 hover:bg-[var(--bg-muted)] -mx-2 px-2 py-1.5 rounded-xl transition-colors">
-                      <div className="w-9 h-9 rounded-full bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
+                      <div className="w-9 h-9 rounded-full bg-[#2563eb] dark:bg-[#1a3c72] flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-xs font-bold">{c.lawyer.initials}</span>
                       </div>
                       <div className="min-w-0">

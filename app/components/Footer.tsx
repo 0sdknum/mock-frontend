@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-xl bg-[#1a3c72] dark:bg-white/10 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#3b7fe8] to-[#1d52c8] dark:bg-white/10 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">Д</span>
               </div>
               <span className="font-bold text-base text-[var(--ink)] dark:text-white tracking-tight">
@@ -27,7 +27,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/bankruptcy"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--ink)] dark:hover:text-white transition-colors"
                 >
                   Банкротство
                 </Link>
@@ -35,7 +35,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/family"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--ink)] dark:hover:text-white transition-colors"
                 >
                   Семейные дела
                 </Link>
@@ -43,7 +43,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/test"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--ink)] dark:hover:text-white transition-colors"
                 >
                   Проверить ситуацию
                 </Link>
@@ -58,17 +58,17 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="#" className="hover:text-[var(--ink)] dark:hover:text-white transition-colors">
                   Политика конфиденциальности
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="#" className="hover:text-[var(--ink)] dark:hover:text-white transition-colors">
                   Пользовательское соглашение
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-white transition-colors">
+                <Link href="#" className="hover:text-[var(--ink)] dark:hover:text-white transition-colors">
                   Обработка данных
                 </Link>
               </li>
@@ -82,7 +82,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:hello@doxy.ru"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--ink)] dark:hover:text-white transition-colors"
                 >
                   hello@doxy.ru
                 </a>
@@ -90,7 +90,7 @@ export default function Footer() {
               <li>
                 <a
                   href="tel:+78000000000"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--ink)] dark:hover:text-white transition-colors"
                 >
                   8 (800) 000-00-00
                 </a>
